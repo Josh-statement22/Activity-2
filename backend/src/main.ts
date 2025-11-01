@@ -16,7 +16,7 @@ async function bootstrap() {
     .setTitle('Notes API')
     .setDescription('API for personal notes with user authentication.')
     .setVersion('1.0')
-    .addBearerAuth() // 👈 para may "Authorize" button sa Swagger
+    .addBearerAuth() // para may "Authorize" button sa Swagger
     .addTag('Auth')
     .addTag('Notes')
     .build();
@@ -24,7 +24,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document, {
     swaggerOptions: {
-      persistAuthorization: true, // 👈 para di nawawala token mo
+      persistAuthorization: true, //  para di nawawala token mo
     },
     customSiteTitle: 'Notes API Docs 📝',
   });

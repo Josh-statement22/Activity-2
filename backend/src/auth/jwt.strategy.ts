@@ -12,7 +12,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-    // This becomes req.user automatically
+    // Ito yung magiging `req.user` sa mga guarded routes
     return { id: payload.id, email: payload.email };
   }
 }
