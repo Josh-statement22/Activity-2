@@ -13,8 +13,15 @@ export default function Signup() {
     e.preventDefault();
     setError("");
 
+    // Password validation
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+      return;
+    }
+
     try {
       const res = await api.post("/auth/signup", { email, password });
+
       // Save token to localStorage
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
@@ -61,7 +68,7 @@ export default function Signup() {
             </label>
             <input
               type="email"
-              placeholder="your@email.com"
+              placeholder=""
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -75,12 +82,16 @@ export default function Signup() {
             </label>
             <input
               type="password"
-              placeholder="••••••••"
+              placeholder=""
               required
+              minLength={8}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full border border-gray-300 bg-white/60 backdrop-blur-sm p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
             />
+            <p className="text-xs text-gray-500 mt-1">
+              Password must be at least 8 characters long.
+            </p>
           </div>
 
           <button

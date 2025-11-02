@@ -3,12 +3,12 @@ import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { ApiTags, ApiBody, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 
-@ApiTags('Auth') // 👈 Grouped under "Auth" section in Swagger
+@ApiTags('Auth') // "Auth" section in Swagger
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // ✅ REGISTER
+  // REGISTER
   @Post('signup')
   @ApiOperation({ summary: 'Register a new user' })
   @ApiBody({
@@ -36,7 +36,7 @@ export class AuthController {
     return this.authService.register(body.email, body.password);
   }
 
-  // ✅ LOGIN
+  // LOGIN
   @Post('login')
   @ApiOperation({ summary: 'Login user and return JWT token' })
   @ApiBody({
@@ -60,11 +60,11 @@ export class AuthController {
     return this.authService.login(body.email, body.password);
   }
 
-  // ✅ TEST TOKEN
+  // TEST TOKEN
   @UseGuards(JwtAuthGuard)
   @Get('me')
   @ApiOperation({ summary: 'Get user profile (requires JWT)' })
-  @ApiBearerAuth() // 👈 para lumabas yung "Authorize" button sa Swagger
+  @ApiBearerAuth() // for "Authorize" button sa Swagger
   @ApiResponse({
     status: 200,
     description: 'Returns the authenticated user',

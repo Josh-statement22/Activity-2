@@ -106,7 +106,6 @@ export default function Dashboard() {
             <h2 className="text-2xl font-bold text-gray-800">
               Your Notes ({notes.filter((n) => !n.archived).length})
             </h2>
-            {/* ✅ Removed duplicate Add Note button here */}
           </div>
 
           {notes.filter((n) => !n.archived).length === 0 ? (
@@ -130,7 +129,7 @@ export default function Dashboard() {
         </div>
       </main>
 
-      {/* ✅ Floating Add Note Button with same design as old upper-right button */}
+      {/* Floating Add Note Button with same design as old upper-right button */}
       <motion.button
         onClick={() => setShowModal(true)}
         initial={{ y: 100, opacity: 0, scale: 0.8 }}

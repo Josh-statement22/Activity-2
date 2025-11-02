@@ -5,18 +5,18 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // ✅ Allow all origins (important for React frontend)
+  // allow origin
   app.enableCors({
     origin: true,
     credentials: true,
   });
 
-  // ✅ Swagger Config
+  // Swagger Config
   const config = new DocumentBuilder()
     .setTitle('Notes API')
     .setDescription('API for personal notes with user authentication.')
     .setVersion('1.0')
-    .addBearerAuth() // para may "Authorize" button sa Swagger
+    .addBearerAuth() 
     .addTag('Auth')
     .addTag('Notes')
     .build();
@@ -24,7 +24,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document, {
     swaggerOptions: {
-      persistAuthorization: true, //  para di nawawala token mo
+      persistAuthorization: true, 
     },
     customSiteTitle: 'Notes API Docs 📝',
   });

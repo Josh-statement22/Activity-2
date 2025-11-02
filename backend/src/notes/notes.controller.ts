@@ -16,14 +16,14 @@ interface NoteBody {
   archived?: boolean;
 }
 
-@ApiTags('Notes') // 👈 Appears as "Notes" section in Swagger
-@ApiBearerAuth()  // 👈 Enables JWT Authorize button
+@ApiTags('Notes')  
+@ApiBearerAuth()  
 @UseGuards(JwtAuthGuard)
 @Controller('notes')
 export class NotesController {
   constructor(private readonly notesService: NotesService) {}
 
-  // ✅ CREATE NOTE
+  // CREATE NOTE
   @Post()
   @ApiOperation({ summary: 'Create a new note (requires JWT)' })
   @ApiBody({
@@ -53,7 +53,7 @@ export class NotesController {
     return this.notesService.createNote(userId, body.title, body.content);
   }
 
-  // ✅ GET ALL NOTES
+  // GET ALL NOTES
   @Get()
   @ApiOperation({ summary: 'Get all notes for the logged-in user' })
   @ApiResponse({
@@ -84,7 +84,7 @@ export class NotesController {
     return this.notesService.findAll(userId);
   }
 
-  // ✅ UPDATE OR ARCHIVE NOTE
+  // UPDATE OR ARCHIVE NOTE
   @Patch(':id')
   @ApiOperation({ summary: 'Update or archive a note (requires JWT)' })
   @ApiParam({ name: 'id', description: 'The ID of the note' })

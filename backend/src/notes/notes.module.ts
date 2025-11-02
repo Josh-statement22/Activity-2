@@ -8,10 +8,10 @@ import { AuthModule } from '../auth/auth.module';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Note.name, schema: NoteSchema }]),
-    forwardRef(() => AuthModule), // fix circular dependency
+    forwardRef(() => AuthModule), 
   ],
   providers: [NotesService],
   controllers: [NotesController],
-  exports: [NotesService], // export if AuthService needs it
+  exports: [NotesService], 
 })
 export class NotesModule {}
